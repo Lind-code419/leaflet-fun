@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Route</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="leaflet.css">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  <script src="app.js"></script>
+  <script src="leaflet.js"></script>
+
+
+
+</head>
+
+<body x-data="appData" class="pages">
+
+  <div class="screenHeader2">
+    <button class="navbtn1" onclick="window.location.href='home.html';"><img src="Arrow 1.svg" alt="Back"></button>
+
+    <button class="navbtn2" onclick="window.location.href='settings-screen.html';"><img src="navicon-svgrepo-com.svg"
+        style="height: 24px; width: 28; border: 0.5em ;" alt="Settings"></button>
+
+  </div>
+
+
+  <div>
+    <h2>Track Journey</h2>
+    <button class="btn1" @click="viewMyVehicles()">Select Vehicle</button>
+    <select x-model="vehicleSelection" class="selectionBox">
+      <template x-for="vehicle in myVehicles" :key="vehicle.registration">
+        <option :value="vehicle.registration" x-text="vehicle.make + ' ' + vehicle.model + ' ' + vehicle.registration">
+        </option>
+      </template>
+    </select>
+  </div>
+
+
+  <div>
+    <div><button class="btn1" @click="startRoute">Start Journey</button>
+
+      <button class="btn2" @click="endRoute">End Journey</button>
+    </div>
+
+    
+    
+
+
+    <!--<button @click="getLocationUpdate()">Try It</button>
+    <p x-text="latitude"></p>
+    <p x-text="longitude"></p>
+    <p id="demo" style="color: white;"></p>
+    /!-->
+    
+  </div>
+  <div id="map" class="main-map"></div>
+
+  <div class="inputblock">
+
+    <p>Type in distance in km:</p>
+    <p x-text="distanceTraveled"></p>
+    <input type="text" x-model="distanceTraveled">
+    <button class="btn3" @click="viewMyVehicles(distanceTraveled, vehicleSelection)">Add This Journey</button>
+  </div>
+  <button class="navbtn1" onclick="window.location.href='basic-map.html';">Basic Map experiment -distance</button>
+  <button class="navbtn1" onclick="window.location.href='basic-map2.html';">Basic Map experiment 2 -polyline</button>
+  <button class="navbtn1" onclick="window.location.href='basic-map3.html';">Basic Map experiment 3 -polyline and distance combined</button>
+  <button class="navbtn1" onclick="window.location.href='basic-map-with-geolocation.html';">Basic Map experiment -polyline, geolocation and distance combined</button>
+</body>
+
+</html>
